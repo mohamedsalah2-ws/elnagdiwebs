@@ -1,99 +1,134 @@
-// --- 1. الترجمات ---
+// 1. Translations Object (تم تحديث النصوص بناءً على المحتوى الجديد)
 const translations = {
     en: {
-        brandName: 'ELNAGDI', brandTag: 'Services & Trading',
+        brandName: 'ELNAGDI',
+        brandTag: 'Services & Trading',
+        
+        // Nav
         navHome: 'Home', navAbout: 'About Us', navServices: 'Services', navContact: 'Contact',
-        heroBadge: 'Premium Services',
-        heroTitle: 'Excellence in', heroSubtitle: 'Business Solutions',
-        heroDesc: 'ELNAGDI Services & Trading is your premier partner for comprehensive corporate consulting and strategic growth globally.',
-        heroBtn1: 'Explore Services', heroBtn2: 'Contact Us',
-        servicesTitle: 'Our Services', servicesDesc: 'Comprehensive solutions tailored to your unique needs.',
         quickLinks: 'Quick Links', contactInfo: 'Contact Info',
-        location: 'Main Headquarters, Business District',
-        footerDesc: 'Your trusted partner for comprehensive business solutions.',
-        aboutTitle: 'About Us', aboutSubtitle: 'Building the future with excellence.',
+        footerDesc: 'Your strategic partner for integrated logistics, trading, and consulting solutions.',
+        location: '',
+        
+        // Home Specific
+        heroBadge: 'Integrated Solutions',
+        heroTitle: 'Leading the Future of', heroSubtitle: 'Services & Trading',
+        heroDesc: 'A leading company providing integrated solutions in logistics, general trading, management consulting, and IT to bridge market gaps with high quality.',
+        heroBtn1: 'Our Services', heroBtn2: 'Contact Us',
+        servicesTitle: 'Our Core Services', servicesDesc: 'Innovative, high-quality services meeting local and regional needs.',
+        
+        // About Page
+        aboutTitle: 'About ELNAGDI', aboutSubtitle: 'Bridging market gaps through innovation and excellence.',
         whoWeAre: 'Who We Are',
-        story: 'ELNAGDI is a premier establishment providing top-tier solutions. We combine local expertise with global standards.',
-        mission: 'Our Mission', missionDesc: 'To empower businesses with innovative solutions.',
-        vision: 'Our Vision', visionDesc: 'To be the leading partner for sustainable growth.',
+        story: 'ELNAGDI is a pioneering company established to bridge market gaps by providing innovative, high-quality services. We aim to meet the needs of local and regional clients through integrated solutions.',
+        mission: 'Our Mission', missionDesc: 'Delivering distinguished services that enhance client value, support partner growth, and contribute to sustainable development.',
+        vision: 'Our Vision', visionDesc: 'To become the premier strategic partner in the region, locally and regionally, through excellence in services and trading.',
         valuesTitle: 'Our Core Values',
-        contactTitle: 'Get in Touch', contactSubtitle: 'We are here to help you elevate your business.',
-        formTitle: 'Send us a Message', formBtn: 'Send Message',
-        hoursTitle: 'Business Hours', hoursDesc: 'Sun - Thu: 9:00 AM - 6:00 PM',
+        
+        // Contact Page
+        contactTitle: 'Get in Touch', contactSubtitle: 'We are here to support your growth and answer your inquiries.',
+        formTitle: 'Send us a Message',
+        formBtn: 'Send Message',
+        hoursTitle: 'Business Hours', hoursDesc: 'Sun - Thu: 9:00 AM - 5:00 PM',
         connectTitle: 'Connect With Us'
     },
     ar: {
-        brandName: 'النجدي', brandTag: 'للخدمات والتجارة',
+        brandName: 'النجدي',
+        brandTag: 'للخدمات والتجارة',
+        
+        // Nav
         navHome: 'الرئيسية', navAbout: 'من نحن', navServices: 'خدماتنا', navContact: 'اتصل بنا',
-        heroBadge: 'خدمات متميزة',
-        heroTitle: 'التميز في', heroSubtitle: 'حلول الأعمال',
-        heroDesc: 'مؤسسة النجدي للخدمات والتجارة هي شريكك الأول للاستشارات المؤسسية الشاملة والنمو الاستراتيجي عالمياً.',
-        heroBtn1: 'خدماتنا', heroBtn2: 'تواصل معنا',
-        servicesTitle: 'خدماتنا', servicesDesc: 'حلول شاملة مصممة خصيصاً لاحتياجاتك الفريدة.',
         quickLinks: 'روابط سريعة', contactInfo: 'معلومات الاتصال',
-        location: 'المقر الرئيسي، منطقة الأعمال',
-        footerDesc: 'شريكك الموثوق لحلول الأعمال الشاملة.',
-        aboutTitle: 'من نحن', aboutSubtitle: 'نبني المستقبل بتميز وابتكار.',
-        whoWeAre: 'هويتنا',
-        story: 'النجدي هي مؤسسة رائدة تقدم حلولاً من الطراز الأول. نجمع بين الخبرة المحلية والمعايير العالمية.',
-        mission: 'رسالتنا', missionDesc: 'تمكين الشركات بحلول مبتكرة وجودة لا تهاون فيها.',
-        vision: 'رؤيتنا', visionDesc: 'أن نكون الشريك الرائد للنمو المستدام.',
-        valuesTitle: 'قيمنا الجوهرية',
-        contactTitle: 'تواصل معنا', contactSubtitle: 'نحن هنا لمساعدتك في الارتقاء بأعمالك.',
-        formTitle: 'أرسل لنا رسالة', formBtn: 'إرسال الرسالة',
-        hoursTitle: 'ساعات العمل', hoursDesc: 'الأحد - الخميس: 9:00 ص - 6:00 م',
+        footerDesc: 'شريكك الاستراتيجي لحلول الخدمات اللوجستية والتجارة والاستشارات.',
+        location: 'الرياض، المملكة العربية السعودية',
+        
+        // Home Specific
+        heroBadge: 'حلول متكاملة',
+        heroTitle: 'الريادة في عالم', heroSubtitle: 'الخدمات والتجارة',
+        heroDesc: 'شركة رائدة في تقديم حلول متكاملة في الخدمات اللوجستية، التجارة العامة، والاستشارات الإدارية لسد الفجوات السوقية بجودة عالية.',
+        heroBtn1: 'خدماتنا', heroBtn2: 'تواصل معنا',
+        servicesTitle: 'أبرز خدماتنا', servicesDesc: 'خدمات مبتكرة ذات جودة عالية تلبي احتياجات العملاء المحليين والإقليميين.',
+        
+        // About Page
+        aboutTitle: 'عن النجدي', aboutSubtitle: 'نسد الفجوات السوقية عبر الابتكار والتميز.',
+        whoWeAre: 'من نحن',
+        story: 'شركة النجدي هي شركة رائدة تأسست بهدف سد الفجوات السوقية عبر توفير خدمات مبتكرة ذات جودة عالية تلبي احتياجات العملاء المحليين والإقليميين في مجالات متعددة.',
+        mission: 'رسالتنا', missionDesc: 'تقديم خدمات متميزة تعزز من قيمة عملائنا، تدعم نمو شركائنا، وتسهم في التنمية المستدامة.',
+        vision: 'رؤيتنا', visionDesc: 'أن نصبح الشريك الاستراتيجي الأول في المنطقة، محلياً وإقليمياً، عبر التميز في الخدمات والتجارة.',
+        valuesTitle: 'القيم الأساسية',
+
+        // Contact Page
+        contactTitle: 'تواصل معنا', contactSubtitle: 'نحن هنا لدعم نموك والإجابة على استفساراتك.',
+        formTitle: 'أرسل لنا رسالة',
+        formBtn: 'إرسال الرسالة',
+        hoursTitle: 'ساعات العمل', hoursDesc: 'الأحد - الخميس: 9:00 ص - 5:00 م',
         connectTitle: 'تواصل معنا'
     }
 };
 
-// --- 2. البيانات ---
+// 2. تحديث البيانات (الخدمات، القيم، الإحصائيات)
+
 const servicesData = [
-    { icon: 'briefcase', title_en: 'Business Setup', title_ar: 'تأسيس الأعمال', desc_en: 'Corporate structuring and registration.', desc_ar: 'هيكلة الشركات وتسجيلها.' },
-    { icon: 'scale', title_en: 'Legal Consulting', title_ar: 'استشارات قانونية', desc_en: 'Contracts and compliance advice.', desc_ar: 'العقود وامتثال القوانين.' },
-    { icon: 'users', title_en: 'HR & Admin', title_ar: 'الموارد البشرية', desc_en: 'Optimizing team structures.', desc_ar: 'تحسين هيكلة فرق العمل.' },
-    { icon: 'package', title_en: 'Trading', title_ar: 'التجارة', desc_en: 'Import, export and logistics.', desc_ar: 'الاستيراد والتصدير واللوجستيات.' },
-    { icon: 'calculator', title_en: 'Financial', title_ar: 'خدمات مالية', desc_en: 'Accounting and tax planning.', desc_ar: 'المحاسبة والتخطيط الضريبي.' },
-    { icon: 'palette', title_en: 'Creative Design', title_ar: 'تصميم إبداعي', desc_en: 'Branding and digital identity.', desc_ar: 'العلامة التجارية والهوية الرقمية.' }
+    { 
+        icon: 'truck', // أيقونة مناسبة للوجستيات
+        title_en: 'Logistics Services', title_ar: 'الخدمات اللوجستية', 
+        desc_en: 'Supply chain management, storage, distribution, and customs clearance.', 
+        desc_ar: 'إدارة سلاسل التوريد، تخزين وتوزيع المنتجات، شحن وتخليص جمركي.' 
+    },
+    { 
+        icon: 'package', 
+        title_en: 'General Trading', title_ar: 'التجارة العامة', 
+        desc_en: 'Import/Export, foodstuff trading, and construction materials distribution.', 
+        desc_ar: 'استيراد وتصدير، تجارة المواد الغذائية، وتوزيع منتجات البناء.' 
+    },
+    { 
+        icon: 'briefcase', 
+        title_en: 'Management Consulting', title_ar: 'الاستشارات الإدارية', 
+        desc_en: 'Corporate restructuring, process improvement, and digital transformation.', 
+        desc_ar: 'إعادة هيكلة الشركات، تحسين العمليات، ودعم التحول الرقمي.' 
+    },
+    { 
+        icon: 'monitor', 
+        title_en: 'IT Solutions', title_ar: 'تقنية المعلومات', 
+        desc_en: 'Software development, ERP system support, and information security.', 
+        desc_ar: 'تطوير البرمجيات، دعم نظم ERP، وأمن المعلومات.' 
+    }
 ];
 
+// استخدمنا قسم الإحصائيات لعرض "لماذا تختار النجدي" كنقاط قوة
 const statsData = [
-    { val: '+10', label_en: 'Years Experience', label_ar: 'سنوات خبرة' },
-    { val: '+500', label_en: 'Happy Clients', label_ar: 'عميل سعيد' },
-    { val: '100%', label_en: 'Satisfaction', label_ar: 'نسبة رضا' },
-    { val: '24/7', label_en: 'Support', label_ar: 'دعم فني' }
+    { val: 'GCC', label_en: 'Regional Presence', label_ar: 'تغطية خليجية' },
+    { val: '+Egypt', label_en: 'Africa Network', label_ar: 'مصر وأفريقيا' },
+    { val: '100%', label_en: 'Custom Solutions', label_ar: 'حلول مخصصة' },
+    { val: 'CSR', label_en: 'Social Responsibility', label_ar: 'مسؤولية مجتمعية' }
 ];
 
 const valuesData = [
-    { icon: 'award', title_en: 'Excellence', title_ar: 'التميز', desc_en: 'Striving for perfection.', desc_ar: 'نسعى للكمال.' },
-    { icon: 'heart', title_en: 'Integrity', title_ar: 'النزاهة', desc_en: 'Honesty is our policy.', desc_ar: 'الصدق منهجنا.' },
-    { icon: 'users', title_en: 'Client First', title_ar: 'العميل أولاً', desc_en: 'Your success is ours.', desc_ar: 'نجاحك هو نجاحنا.' },
-    { icon: 'trending-up', title_en: 'Innovation', title_ar: 'الابتكار', desc_en: 'Moving forward.', desc_ar: 'نتطلع للأمام.' }
+    { icon: 'award', title_en: 'Excellence', title_ar: 'التميز', desc_en: 'Exceeding customer expectations.', desc_ar: 'تقديم خدمات تفوق التوقعات.' },
+    { icon: 'lightbulb', title_en: 'Innovation', title_ar: 'الابتكار', desc_en: 'Adopting future solutions.', desc_ar: 'تبني الحلول المستقبلية.' },
+    { icon: 'users', title_en: 'Partnership', title_ar: 'الشراكة', desc_en: 'Building long-term relationships.', desc_ar: 'بناء علاقات طويلة الأمد.' },
+    { icon: 'shield-check', title_en: 'Reliability', title_ar: 'الموثوقية', desc_en: 'Commitment to quality & transparency.', desc_ar: 'أعلى معايير الجودة والشفافية.' }
 ];
 
 const contactInfoData = [
-    { icon: 'phone', title_en: 'Call Us', title_ar: 'اتصل بنا', val: '+000 00 000 0000', link: 'tel:+' },
-    { icon: 'mail', title_en: 'Email Us', title_ar: 'راسلنا', val: 'info@elnagdi.com', link: 'mailto:' },
-    { icon: 'map-pin', title_en: 'Visit Us', title_ar: 'زورنا', val: 'Main HQ, Business District', link: '#' }
+    { icon: 'phone', title_en: 'Call Us', title_ar: 'اتصل بنا', val: '+966 XX XXX XXXX', link: 'tel:+' },
+    { icon: 'mail', title_en: 'Email Us', title_ar: 'راسلنا', val: 'info@alnajdi.com', link: 'mailto:' },
+    { icon: 'map-pin', title_en: 'Visit Us', title_ar: 'زورنا', val: 'Riyadh, Saudi Arabia', link: '#' }
 ];
 
-// --- المنطق (Logic) ---
-let currentLang = localStorage.getItem('lang') || 'en';
+// --- Initialization Logic (نفس الكود السابق بدون تغيير) ---
+document.getElementById('year').textContent = new Date().getFullYear();
+let currentLang = localStorage.getItem('lang') || 'ar'; // العربية افتراضية
 let currentTheme = localStorage.getItem('theme') || 'light';
 
 function init() {
-    // ضبط السنة في الفوتر
-    const yearEl = document.getElementById('year');
-    if(yearEl) yearEl.textContent = new Date().getFullYear();
-
     setTheme(currentTheme);
     setLanguage(currentLang);
     renderDynamicContent();
     
-    // تهيئة المكتبات
     if(typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
     if(typeof lucide !== 'undefined') lucide.createIcons();
 
-    // تأثير النافبار
     window.addEventListener('scroll', () => {
         const nav = document.getElementById('navbar');
         if(nav) {
@@ -101,6 +136,7 @@ function init() {
             else nav.classList.remove('bg-white/90', 'dark:bg-dark/90', 'backdrop-blur-md', 'shadow-md');
         }
     });
+    highlightActiveLink();
 }
 
 function toggleTheme() {
@@ -129,21 +165,40 @@ function setLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) {
-            if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = translations[lang][key];
-            else el.textContent = translations[lang][key];
+            if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = translations[lang][key];
+            } else {
+                el.textContent = translations[lang][key];
+            }
         }
     });
     
     // تعديل مكان زر الواتساب
-    const waBtn = document.getElementById('wa-btn');
+    const waBtn = document.querySelector('a[href*="wa.me"]');
     if(waBtn) {
         if(lang === 'ar') { waBtn.classList.remove('right-8'); waBtn.classList.add('left-8'); }
         else { waBtn.classList.remove('left-8'); waBtn.classList.add('right-8'); }
     }
+    
+    highlightActiveLink();
+}
+
+function highlightActiveLink() {
+    const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+    const links = document.querySelectorAll('.nav-link'); // تم استخدام كلاس .nav-link
+    links.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('text-primary', 'font-bold');
+            link.classList.remove('text-gray-800', 'dark:text-white');
+        } else {
+            link.classList.remove('text-primary', 'font-bold');
+            link.classList.add('text-gray-800', 'dark:text-white');
+        }
+    });
 }
 
 function renderDynamicContent() {
-    // Services
+    // 1. Render Services
     const servicesGrid = document.getElementById('services-grid');
     if (servicesGrid) {
         servicesGrid.innerHTML = servicesData.map(s => `
@@ -152,23 +207,23 @@ function renderDynamicContent() {
                     <i data-lucide="${s.icon}" class="w-6 h-6"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">${currentLang === 'en' ? s.title_en : s.title_ar}</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm">${currentLang === 'en' ? s.desc_en : s.desc_ar}</p>
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">${currentLang === 'en' ? s.desc_en : s.desc_ar}</p>
             </div>
         `).join('');
     }
 
-    // Stats
+    // 2. Render Stats (Why Choose Us)
     const statsGrid = document.getElementById('stats-grid');
     if (statsGrid) {
         statsGrid.innerHTML = statsData.map(s => `
-            <div class="p-6 border border-gray-100 dark:border-gray-700 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur" data-aos="zoom-in">
-                <h3 class="text-4xl font-extrabold text-primary mb-1">${s.val}</h3>
-                <p class="text-gray-500 dark:text-gray-400 font-medium">${currentLang === 'en' ? s.label_en : s.label_ar}</p>
+            <div class="p-6 border border-gray-100 dark:border-gray-700 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur hover:border-primary transition-colors" data-aos="zoom-in">
+                <h3 class="text-2xl font-extrabold text-primary mb-2">${s.val}</h3>
+                <p class="text-gray-600 dark:text-gray-300 font-medium text-sm">${currentLang === 'en' ? s.label_en : s.label_ar}</p>
             </div>
         `).join('');
     }
 
-    // Values
+    // 3. Render Values
     const valuesGrid = document.getElementById('values-grid');
     if (valuesGrid) {
         valuesGrid.innerHTML = valuesData.map(v => `
@@ -182,7 +237,7 @@ function renderDynamicContent() {
         `).join('');
     }
 
-    // Contact Cards
+    // 4. Render Contact Cards
     const contactGrid = document.getElementById('contact-cards');
     if (contactGrid) {
         contactGrid.innerHTML = contactInfoData.map(c => `
@@ -191,7 +246,7 @@ function renderDynamicContent() {
                     <i data-lucide="${c.icon}" class="w-6 h-6"></i>
                 </div>
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">${currentLang === 'en' ? c.title_en : c.title_ar}</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm">${c.val}</p>
+                <p class="text-gray-500 dark:text-gray-400 text-sm dir-ltr">${c.val}</p>
             </a>
         `).join('');
     }
@@ -199,5 +254,4 @@ function renderDynamicContent() {
     lucide.createIcons();
 }
 
-// Start
 init();
