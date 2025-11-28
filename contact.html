@@ -3,195 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - ELNAGDI</title>
+    <title>Contact - EL-NAJDI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#D4AF37', secondary: '#4A90E2', dark: '#111827', light: '#F9FAFB' }, fontFamily: { sans: ['DM Sans', 'Cairo', 'sans-serif'], heading: ['Noto Kufi Arabic', 'sans-serif'] } } } }
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#D4AF37', secondary: '#5D1826', dark: '#111827', light: '#F9FAFB' }, fontFamily: { sans: ['DM Sans', 'Cairo', 'sans-serif'], heading: ['Noto Kufi Arabic', 'sans-serif'] } } } }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-100 transition-colors duration-300">
+<body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
 
     <div class="watermark"></div>
     <div class="fixed inset-0 z-0 bg-gradient-to-b from-white/0 via-white/40 to-white dark:from-dark/0 dark:via-dark/40 dark:to-dark pointer-events-none"></div>
 
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <div class="h-10 w-10 bg-white/10 backdrop-blur-sm p-1 border border-white/20 rounded-lg overflow-hidden">
-                        <img src="https://horizons-cdn.hostinger.com/24c4c862-faba-4763-924e-5448a09f5b05/dfd2866a2ad1fa7ac52d2559c574ee8c.jpg" class="h-full w-full object-contain">
-                    </div>
-                    <span class="font-bold text-lg text-gray-900 dark:text-white" data-i18n="brandName">ELNAGDI</span>
-                </a>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="index.html" class="text-sm font-medium hover:text-primary transition-colors" data-i18n="navHome">Home</a>
-                    <a href="about.html" class="text-sm font-medium hover:text-primary transition-colors" data-i18n="navAbout">About Us</a>
-                    <a href="services.html" class="text-sm font-medium hover:text-primary transition-colors" data-i18n="navServices">Services</a>
-                    <a href="contact.html" class="text-sm font-medium text-primary" data-i18n="navContact">Contact</a>
-                    <div class="flex items-center gap-2 border-l border-gray-300 dark:border-gray-700 pl-4 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-4">
-                        <button onclick="toggleLanguage()" class="p-2"><i data-lucide="globe" class="w-5 h-5"></i></button>
-                        <button onclick="toggleTheme()" class="p-2"><i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i><i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between"><a href="index.html" class="flex items-center gap-3 group"><div class="h-12 w-12 bg-white/10 backdrop-blur-sm p-0.5 border border-primary/30 rounded-full overflow-hidden shadow-md font-bold text-xl leading-none text-primary flex items-center justify-center font-heading">N</div><div class="flex flex-col"><span class="font-bold text-xl leading-none text-gray-900 dark:text-white font-heading" data-i18n="brandName">EL-NAJDI</span><span class="text-[10px] font-bold uppercase tracking-widest text-primary mt-0.5" data-i18n="brandTag">Investment & Business</span></div></a><div class="hidden md:flex items-center gap-8"><a href="index.html" class="nav-link text-sm font-medium hover:text-primary transition-colors" data-i18n="navHome">Home</a><a href="about.html" class="nav-link text-sm font-medium hover:text-primary transition-colors" data-i18n="navAbout">About Us</a><a href="services.html" class="nav-link text-sm font-medium hover:text-primary transition-colors" data-i18n="navServices">Services</a><a href="contact.html" class="nav-link text-sm font-medium text-primary" data-i18n="navContact">Contact</a><div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-2"></div><div class="flex items-center gap-2"><button onclick="toggleLanguage()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"><i data-lucide="globe" class="w-5 h-5"></i></button><button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"><i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i><i data-lucide="sun" class="w-5 h-5 block dark:hidden text-primary"></i><span class="font-bold">Theme</span></button></div></div><button class="md:hidden p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i data-lucide="menu" class="w-6 h-6"></i></button></div></div><div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-dark/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800 absolute top-full left-0 right-0 shadow-xl p-6 space-y-4 transition-all"><a href="index.html" class="block text-lg font-medium hover:text-primary" data-i18n="navHome">Home</a><a href="about.html" class="block text-lg font-medium hover:text-primary" data-i18n="navAbout">About Us</a><a href="services.html" class="block text-lg font-medium hover:text-primary" data-i18n="navServices">Services</a><a href="contact.html" class="block text-lg font-medium text-primary" data-i18n="navContact">Contact</a><div class="h-px bg-gray-200 dark:bg-gray-700 my-2"></div><div class="grid grid-cols-2 gap-4"><button onclick="toggleLanguage()" class="flex items-center justify-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-gray-800"><i data-lucide="globe" class="w-5 h-5 text-primary"></i> <span class="font-bold">Lang</span></button><button onclick="toggleTheme()" class="flex items-center justify-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-gray-800"><i data-lucide="moon" class="w-5 h-5 hidden dark:block text-primary"></i><i data-lucide="sun" class="w-5 h-5 block dark:hidden text-primary"></i><span class="font-bold">Theme</span></button></div></div>
     </nav>
 
-    <section class="relative pt-32 pb-20 text-center relative z-10 bg-dark overflow-hidden">
-        <div class="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-dark/80 to-dark"></div>
-        
-        <div class="relative z-10">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white" data-aos="fade-up" data-i18n="contactTitle">Get in Touch</h1>
-            <p class="text-xl text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-i18n="contactSubtitle">Here to help.</p>
+    <section class="relative pt-40 pb-32 text-center relative z-10 overflow-hidden bg-gray-900">
+        <div class="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center grayscale mix-blend-overlay"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-gray-900"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white font-heading" data-aos="fade-up" data-i18n="contactTitle">Contact Us</h1>
+            <p class="text-xl text-gray-300 leading-relaxed" data-aos="fade-up" data-aos-delay="100" data-i18n="contactSubtitle">Our experts are ready to assist you 24/7.</p>
         </div>
     </section>
 
-    <div class="max-w-7xl mx-auto px-4 relative z-20 -mt-16">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="contact-cards">
-            </div>
+    <div class="max-w-7xl mx-auto px-4 relative z-20 -mt-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="contact-cards-floating">
+             </div>
     </div>
 
-    <section class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            <div class="lg:col-span-7 bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700" data-aos="fade-right">
-                <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white" data-i18n="formTitle">Send Message</h2>
-                <form class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 outline-none focus:border-primary" data-i18n="formName" placeholder="Name">
-                        <input type="email" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 outline-none focus:border-primary" data-i18n="formEmail" placeholder="Email">
+    <section class="py-28 relative z-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-white dark:bg-gray-800 p-12 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700">
+                <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white font-heading text-center" data-i18n="formTitle">Request a Consultation</h2>
+                <form class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <input type="text" class="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium" data-i18n="formName" placeholder="Full Name">
+                        <input type="email" class="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium" data-i18n="formEmail" placeholder="Email Address">
                     </div>
-                    <input type="text" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 outline-none focus:border-primary" data-i18n="formSubject" placeholder="Subject">
-                    <textarea rows="5" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 outline-none focus:border-primary" data-i18n="formMessage" placeholder="Message"></textarea>
-                    <button type="submit" class="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-yellow-600 transition-colors" data-i18n="formBtn">Send</button>
+                    <input type="text" class="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium" data-i18n="formSubject" placeholder="Service Required">
+                    <textarea rows="6" class="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium resize-none" data-i18n="formMessage" placeholder="Message Details"></textarea>
+                    <button type="submit" class="w-full py-5 bg-primary text-white text-lg font-bold rounded-2xl hover:bg-yellow-600 transition-all shadow-lg hover:shadow-xl" data-i18n="formBtn">Send Request</button>
                 </form>
             </div>
-
-            <div class="lg:col-span-5 space-y-8" data-aos="fade-left">
-                <div class="h-[400px] bg-gray-200 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg relative">
-                    <div class="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-gray-700 text-gray-500">
-                        Map Placeholder
-                    </div>
-                    <div class="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur p-4 rounded-xl shadow-lg flex items-center gap-4">
-                        <div class="bg-primary/10 p-3 rounded-full text-primary"><i data-lucide="clock" class="w-6 h-6"></i></div>
-                        <div>
-                            <h4 class="font-bold text-gray-900 dark:text-white" data-i18n="hoursTitle">Hours</h4>
-                            <p class="text-sm text-gray-500" data-i18n="hoursDesc">9-6</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
-    <footer class="bg-white dark:bg-gray-900 border-t-2 border-primary pt-16 pb-8 text-sm relative z-10 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-            
-            <div class="space-y-4">
-                <div class="flex items-center gap-3">
-                    <div class="h-12 w-12 bg-white rounded-xl border border-gray-200 p-1 flex items-center justify-center">
-                        <img src="https://horizons-cdn.hostinger.com/24c4c862-faba-4763-924e-5448a09f5b05/dfd2866a2ad1fa7ac52d2559c574ee8c.jpg" class="h-full w-full object-contain rounded-lg" alt="Logo">
-                    </div>
-                    <div class="flex flex-col">
-                        <h3 class="font-bold text-lg text-gray-900 dark:text-white leading-none" data-i18n="brandName">ELNAGDI</h3>
-                        <p class="text-[10px] text-primary font-bold uppercase tracking-wider mt-1" data-i18n="brandTag">Services & Trading</p>
-                    </div>
-                </div>
-                <p class="text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="footerDesc">
-                    Your trusted partner for comprehensive business solutions.
-                </p>
-            </div>
 
-            <div>
-                <h4 class="font-bold mb-6 uppercase text-gray-900 dark:text-white tracking-wider relative inline-block">
-                    <span data-i18n="quickLinks">Quick Links</span>
-                    <span class="absolute -bottom-2 left-0 w-8 h-0.5 bg-primary rounded-full"></span>
-                </h4>
-                <ul class="space-y-3 text-gray-500 dark:text-gray-400">
-                    <li>
-                        <a href="index.html" class="flex items-center gap-2 hover:text-primary transition-colors group">
-                            <i data-lucide="chevron-right" class="w-3 h-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity ltr:rotate-0 rtl:rotate-180"></i>
-                            <span data-i18n="navHome">Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="about.html" class="flex items-center gap-2 hover:text-primary transition-colors group">
-                            <i data-lucide="chevron-right" class="w-3 h-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity ltr:rotate-0 rtl:rotate-180"></i>
-                            <span data-i18n="navAbout">About Us</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="services.html" class="flex items-center gap-2 hover:text-primary transition-colors group">
-                            <i data-lucide="chevron-right" class="w-3 h-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity ltr:rotate-0 rtl:rotate-180"></i>
-                            <span data-i18n="navServices">Services</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="contact.html" class="flex items-center gap-2 hover:text-primary transition-colors group">
-                            <i data-lucide="chevron-right" class="w-3 h-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity ltr:rotate-0 rtl:rotate-180"></i>
-                            <span data-i18n="navContact">Contact</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="lg:col-span-2">
-                <h4 class="font-bold mb-6 uppercase text-gray-900 dark:text-white tracking-wider relative inline-block">
-                    <span data-i18n="contactInfo">Contact Info</span>
-                    <span class="absolute -bottom-2 left-0 w-8 h-0.5 bg-primary rounded-full"></span>
-                </h4>
-                <ul class="space-y-4 text-gray-500 dark:text-gray-400">
-                    <li class="flex items-start gap-4 group">
-                        <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 group-hover:bg-primary group-hover:text-white transition-colors">
-                            <i data-lucide="map-pin" class="w-4 h-4"></i>
-                        </div>
-                        <span class="flex-1" data-i18n="location">Main Headquarters, Business District</span>
-                    </li>
-                    <li class="flex items-center gap-4 group">
-                        <div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
-                            <i data-lucide="phone" class="w-4 h-4"></i>
-                        </div>
-                        <a href="tel:+000000000000" class="hover:text-primary ltr:dir-ltr rtl:dir-ltr font-medium transition-colors">+000 000 0000</a>
-                    </li>
-                    <li class="flex items-center gap-4 group">
-                        <div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
-                            <i data-lucide="mail" class="w-4 h-4"></i>
-                        </div>
-                        <a href="mailto:info@elnagdi.com" class="hover:text-primary transition-colors">info@elnagdi.com</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="border-t border-gray-200 dark:border-gray-800 pt-8 mt-4">
-            <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
-                <p>
-                    © <span id="year"></span> <strong class="text-gray-600 dark:text-gray-300" data-i18n="brandName">ELNAGDI</strong>. All rights reserved.
-                </p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
-                </div>
-            </div>
-        </div>
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 text-sm relative z-10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"><div class="space-y-6"><div class="flex items-center gap-3"><div class="h-12 w-12 bg-white/10 backdrop-blur-sm p-0.5 border border-primary/30 rounded-full overflow-hidden shadow-md font-bold text-xl leading-none text-primary flex items-center justify-center font-heading">N</div><div class="flex flex-col"><h3 class="font-bold text-xl text-gray-900 dark:text-white leading-none font-heading" data-i18n="brandName">EL-NAJDI</h3><p class="text-[10px] text-primary font-bold uppercase tracking-wider mt-1" data-i18n="brandTag">Investment Services</p></div></div><p class="text-gray-500 dark:text-gray-400 leading-relaxed text-base" data-i18n="footerDesc">A leading firm in company formation.</p></div><div><h4 class="font-bold mb-6 uppercase text-gray-900 dark:text-white tracking-wider text-sm font-heading" data-i18n="quickLinks">Quick Links</h4><ul class="space-y-3 text-gray-500 dark:text-gray-400 font-medium"><li><a href="index.html" class="flex items-center gap-2 hover:text-primary transition-colors"><span data-i18n="navHome">Home</span></a></li><li><a href="about.html" class="flex items-center gap-2 hover:text-primary transition-colors"><span data-i18n="navAbout">About Us</span></a></li><li><a href="services.html" class="flex items-center gap-2 hover:text-primary transition-colors"><span data-i18n="navServices">Services</span></a></li><li><a href="contact.html" class="flex items-center gap-2 hover:text-primary transition-colors"><span data-i18n="navContact">Contact</span></a></li></ul></div><div class="lg:col-span-2"><h4 class="font-bold mb-6 uppercase text-gray-900 dark:text-white tracking-wider text-sm font-heading" data-i18n="contactInfo">Contact Info</h4><ul class="space-y-4 text-gray-500 dark:text-gray-400 font-medium" id="contact-cards-footer"> </ul></div></div><div class="border-t border-gray-200 dark:border-gray-800 pt-8"><div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 dark:text-gray-400"><p>© <span id="year"></span> <strong class="text-gray-700 dark:text-gray-300" data-i18n="brandName">EL-NAJDI</strong>. All rights reserved.</p><div class="flex gap-6"><a href="#" class="hover:text-primary transition-colors">Privacy Policy</a><a href="#" class="hover:text-primary transition-colors">Terms of Service</a></div></div></div>
     </footer>
-
-    <a href="https://wa.me/201128864057" target="_blank" class="fixed bottom-8 z-50 bg-[#25D366] text-white p-3.5 rounded-full shadow-2xl hover:bg-[#20ba5a] transition-all hover:scale-110 ltr:right-8 rtl:left-8 flex items-center justify-center group">
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" class="w-8 h-8">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.658-.698c1.02.637 1.992 1.018 3.289 1.019 3.181 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.769-5.767-5.769v-.002zm-5.484 5.766c.002-3.033 2.468-5.498 5.501-5.498s5.498 2.467 5.498 5.497c0 3.033-2.467 5.499-5.5 5.499-.953-.001-1.826-.249-2.592-.684l-1.396.367.373-1.362c-.443-.772-.693-1.65-.684-2.611z"/>
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        <span class="absolute right-16 bg-white text-gray-800 px-3 py-1 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity shadow-sm whitespace-nowrap hidden lg:block ltr:right-16 rtl:left-16 rtl:right-auto">
-            Chat with us
-        </span>
-    </a>
+    <a href="https://wa.me/201128864057" target="_blank" class="fixed bottom-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20ba5a] transition-all hover:scale-110 ltr:right-8 rtl:left-8 flex items-center justify-center group"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.658-.698c1.02.637 1.992 1.018 3.289 1.019 3.181 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.769-5.767-5.769v-.002zm-5.484 5.766c.002-3.033 2.468-5.498 5.501-5.498s5.498 2.467 5.498 5.497c0 3.033-2.467 5.499-5.5 5.499-.953-.001-1.826-.249-2.592-.684l-1.396.367.373-1.362c-.443-.772-.693-1.65-.684-2.611z"/><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Special script for contact page to render floating cards differently
+        function renderFloatingContactCards() {
+            const container = document.getElementById('contact-cards-floating');
+            if (container && typeof contactInfoData !== 'undefined') {
+                container.innerHTML = contactInfoData.map(c => `
+                    <a href="${c.link}${c.val}" class="bg-white dark:bg-gray-800 rounded-3xl p-10 shadow-xl border border-gray-100 dark:border-gray-700 text-center hover:-translate-y-2 transition-all group">
+                        <div class="w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <i data-lucide="${c.icon}" class="w-10 h-10"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 font-heading">${currentLang === 'en' ? c.title_en : c.title_ar}</h3>
+                        <p class="text-lg text-gray-500 dark:text-gray-400 dir-ltr font-medium">${c.val}</p>
+                    </a>
+                `).join('');
+                if(typeof lucide !== 'undefined') lucide.createIcons();
+            }
+        }
+        
+        // Override the default render function just for this page's specific elements
+        const originalRender = renderDynamicContent;
+        renderDynamicContent = function() {
+            originalRender(); // Call original to render footer/navbar elements
+            renderFloatingContactCards(); // Call special one for floating cards
+            
+            // Also ensure footer contact list is rendered correctly
+             const footerContactList = document.getElementById('contact-cards-footer');
+            if (footerContactList && typeof contactInfoData !== 'undefined') {
+                 footerContactList.innerHTML = contactInfoData.map(c => `
+                    <li class="flex items-start gap-4">
+                        <i data-lucide="${c.icon}" class="w-5 h-5 text-primary shrink-0 mt-1"></i>
+                        ${c.icon === 'phone' ? `<a href="${c.link}${c.val}" class="hover:text-primary ltr:dir-ltr">${c.val}</a>` : 
+                          c.icon === 'mail' ? `<a href="${c.link}${c.val}" class="hover:text-primary">${c.val}</a>` : 
+                          `<span>${currentLang === 'en' ? 'Main Headquarters' : 'المقر الرئيسي'}</span>`}
+                    </li>
+                 `).join('');
+                  if(typeof lucide !== 'undefined') lucide.createIcons();
+            }
+        };
+        // Initial call
+        if(typeof currentLang !== 'undefined') renderDynamicContent();
+    </script>
 </body>
 </html>
