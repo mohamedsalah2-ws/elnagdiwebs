@@ -1,192 +1,347 @@
-<!DOCTYPE html>
-<html lang="en" class="light" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EL-NAJDI - Business Setup & Investment</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: { primary: '#D4AF37', secondary: '#5D1826', dark: '#111827', light: '#F9FAFB' },
-                    fontFamily: { sans: ['DM Sans', 'Cairo', 'sans-serif'], heading: ['Noto Kufi Arabic', 'sans-serif'] }
-                }
-            }
+import React, { useMemo, useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Briefcase, Truck, Globe, Monitor, Calculator, Palette, MessageCircle, Scale, Users, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useApp } from '@/context/AppContext';
+
+// --- مكون الأرقام ---
+const CountUpStats = ({ target, label, icon: Icon }) => {
+  const [count, setCount] = useState(0);
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const end = parseInt(target.replace(/\D/g, '')) || 0;
+      const duration = 2000;
+      const increment = end / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          setCount(end);
+          clearInterval(timer);
+        } else {
+          setCount(Math.ceil(start));
         }
-    </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
+      }, 16);
+      return () => clearInterval(timer);
+    }
+  }, [isInView, target]);
 
-    <div class="watermark"></div>
-    <div class="fixed inset-0 z-0 bg-gradient-to-b from-white/0 via-white/40 to-white dark:from-dark/0 dark:via-dark/40 dark:to-dark pointer-events-none"></div>
+  return (
+    <div ref={ref} className="text-white p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all text-center group hover:-translate-y-1">
+      <div className="w-12 h-12 md:w-14 md:h-14 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-md shadow-inner group-hover:scale-110 transition-transform">
+        <Icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+      </div>
+      <h3 className="text-3xl md:text-4xl font-extrabold mb-1">{target.replace(/\d+/, count)}</h3>
+      <p className="text-white/90 font-bold text-xs md:text-sm uppercase tracking-wide">{label}</p>
+    </div>
+  );
+};
 
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <div class="h-12 w-12 bg-white/10 backdrop-blur-sm p-0.5 border border-primary/30 rounded-full overflow-hidden shadow-md font-bold text-xl leading-none text-primary flex items-center justify-center font-heading">
-                        N
-                        </div>
-                    <div class="flex flex-col">
-                        <span class="font-bold text-xl leading-none text-gray-900 dark:text-white font-heading" data-i18n="brandName">EL-NAJDI</span>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary mt-0.5" data-i18n="brandTag">Investment & Business</span>
-                    </div>
-                </a>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="index.html" class="nav-link text-sm font-medium text-primary" data-i18n="navHome">Home</a>
-                    <a href="about.html" class="nav-link text-sm font-medium hover:text-primary transition-colors" data-i18n="navAbout">About Us</a>
-                    <a href="services.html" class="nav-link text-sm font-medium hover:text-primary transition-colors" data-i18n="navServices">Services</a>
-                    <a href="contact.html" class="nav-link text-sm font-medium hover:text-primary transition-colors" data-i18n="navContact">Contact</a>
-                    <div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-2"></div>
-                    <div class="flex items-center gap-2">
-                        <button onclick="toggleLanguage()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"><i data-lucide="globe" class="w-5 h-5"></i></button>
-                        <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"><i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i><i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i></button>
-                    </div>
-                </div>
-                <button class="md:hidden p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i data-lucide="menu" class="w-6 h-6"></i></button>
-            </div>
+// --- شريط الشركاء ---
+const Marquee = ({ children }) => {
+  return (
+    <div className="overflow-hidden flex w-full select-none" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
+      <motion.div
+        className="flex gap-12 md:gap-24 min-w-full items-center py-6"
+        animate={{ x: ["0%", "-100%"] }}
+        transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+      >
+        {children}
+        {children} 
+      </motion.div>
+    </div>
+  );
+};
+
+const Home = () => {
+  const { t, language } = useApp();
+  const isAr = language === 'ar';
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+  
+  const heroWords = isAr 
+    ? ['الخدمات اللوجستية', 'التجارة العامة', 'الاستشارات الإدارية', 'تقنية المعلومات', 'الحاسب والتصميم', 'الخدمات المحاسبية', 'الاستشارات القانونية']
+    : ['Logistics Services', 'General Trading', 'Management Consulting', 'IT Solutions', 'Computer & Design', 'Accounting Services', 'Legal Consulting'];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentServiceIndex((prev) => (prev + 1) % heroWords.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [heroWords.length]);
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+  
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+  };
+
+  const services = useMemo(() => [
+    { slug: 'logistics', icon: Truck, title: isAr ? 'الخدمات اللوجستية' : 'Logistics Services', description: isAr ? 'حلول شحن وتخزين ذكية وإدارة سلاسل الإمداد.' : 'Smart shipping and warehousing solutions for supply chain.', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80' },
+    { slug: 'general-trading', icon: Globe, title: isAr ? 'التجارة العامة' : 'General Trading', description: isAr ? 'استيراد وتصدير المواد الغذائية ومواد البناء عالمياً.' : 'Global import and export of foodstuff and construction materials.', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80' },
+    { slug: 'consulting', icon: Briefcase, title: isAr ? 'الاستشارات الإدارية' : 'Management Consulting', description: isAr ? 'استراتيجيات تطوير الأعمال وإعادة الهيكلة المؤسسية.' : 'Business development strategies and corporate restructuring.', img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80' },
+    { slug: 'legal', icon: Scale, title: isAr ? 'الاستشارات القانونية' : 'Legal Consulting', description: isAr ? 'صياغة العقود التجارية، تأسيس الشركات، وحماية الملكية الفكرية.' : 'Commercial contract drafting, company formation, and IP protection.', img: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800&q=80' },
+    { slug: 'it-solutions', icon: Monitor, title: isAr ? 'تقنية المعلومات' : 'IT Solutions', description: isAr ? 'تطوير البرمجيات، أنظمة ERP، وحلول الأمن السيبراني.' : 'Software development, ERP systems, and cybersecurity solutions.', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80' },
+    { slug: 'design', icon: Palette, title: isAr ? 'الحاسب والتصميم' : 'Computer & Design', description: isAr ? 'تصميم الهوية البصرية، المطبوعات، وصيانة الأجهزة.' : 'Brand identity design, printing, and computer maintenance.', img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80' },
+    { slug: 'accounting', icon: Calculator, title: isAr ? 'الخدمات المحاسبية' : 'Accounting Services', description: isAr ? 'إمساك الدفاتر، التدقيق المالي، والإقرارات الضريبية.' : 'Bookkeeping, financial auditing, and tax return services.', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80' },
+  ], [isAr]);
+
+  const stats = useMemo(() => [
+    { number: "+10", label: isAr ? "سنوات خبرة" : "Years Experience", icon: Briefcase },
+    { number: "+500", label: isAr ? "عميل سعيد" : "Happy Clients", icon: Users },
+    { number: "100%", label: isAr ? "جودة" : "Quality Assurance", icon: Scale },
+    { number: "24/7", label: isAr ? "دعم فني" : "Technical Support", icon: MessageCircle },
+  ], [isAr]);
+
+  const testimonials = [
+    { name: "Ahmed Al-Salem", role: "CEO, TechCorp", text: isAr ? "تعامل راقٍ وخدمة احترافية فاقت التوقعات." : "Classy dealing and professional service that exceeded expectations.", rating: 5 },
+    { name: "Sarah Johnson", role: "Manager, BuildCo", text: isAr ? "ساعدونا في تقليل التكاليف اللوجستية بنسبة كبيرة." : "Helped us reduce logistics costs significantly.", rating: 5 },
+    { name: "Mohamed Salah", role: "Founder, StartUp", text: isAr ? "الشريك التقني الأفضل لمشروعنا الناشئ." : "The best tech partner for our startup.", rating: 4 },
+  ];
+
+  const partners = ["Tech Solutions", "Global Trade", "Future Build", "Smart Systems", "Logistics Pro", "Alpha Group"];
+
+  return (
+    <>
+      <Helmet>
+        <title>{t.nav?.home || (isAr ? 'الرئيسية' : 'Home')} - {t.brand?.name || 'El-Najdi'}</title>
+      </Helmet>
+
+      <motion.a 
+        href="https://wa.me/966500000000" 
+        target="_blank" rel="noopener noreferrer"
+        initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1, type: "spring" }}
+        whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+        className={`fixed bottom-6 z-50 bg-[#25D366] text-white p-3 md:p-4 rounded-full shadow-2xl flex items-center justify-center group ${isAr ? 'left-6' : 'right-6'} hover:shadow-[#25D366]/40`}
+      >
+        <MessageCircle className="w-6 h-6 md:w-8 md:h-8" />
+      </motion.a>
+
+      <div dir={isAr ? 'rtl' : 'ltr'} className="pt-16 md:pt-20 min-h-screen bg-white dark:bg-gray-900 overflow-hidden relative">
+        
+        <div className="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none"></div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-white via-transparent to-white dark:from-gray-900 dark:via-transparent dark:to-gray-900 pointer-events-none" />
+
+        {/* HERO SECTION */}
+        <div className="relative min-h-[85vh] flex items-center py-12 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl mx-auto md:mx-0 text-center md:text-start">
+              
+              <motion.div variants={fadeInUp} className="inline-block mb-6">
+                 <span className="px-4 py-2 bg-[#D4AF37]/10 text-[#D4AF37] text-xs md:text-sm font-bold uppercase tracking-wider rounded-full border border-[#D4AF37]/20 shadow-sm">
+                  {t.services?.title || (isAr ? 'شريكك الاستراتيجي' : 'Your Strategic Partner')}
+                </span>
+              </motion.div>
+              
+              <motion.h1 variants={fadeInUp} className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 md:mb-8 leading-snug tracking-tight">
+                {isAr ? 'الريادة في' : 'Leaders in'} <br className="hidden md:block"/>
+                <span className="block md:inline mt-2 md:mt-0 text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#B5932B]">
+                  <AnimatePresence mode='wait'>
+                    <motion.span
+                      key={currentServiceIndex}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.5 }}
+                      className="inline-block py-2" 
+                    >
+                      {heroWords[currentServiceIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+              </motion.h1>
+
+              <motion.p variants={fadeInUp} className="text-base md:text-xl text-gray-600 dark:text-gray-300 mb-8 md:mb-12 leading-relaxed max-w-2xl mx-auto md:mx-0 md:border-s-4 md:border-[#D4AF37] md:ps-6">
+                {t.home?.heroDesc || (isAr ? 'نقدم منظومة متكاملة من الخدمات التجارية، التقنية، واللوجستية لدفع أعمالك نحو المستقبل بثقة واحترافية.' : 'We provide an integrated ecosystem of trading, tech, and logistic services to drive your business forward with confidence and professionalism.')}
+              </motion.p>
+              
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <Link to="/services" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto h-12 md:h-14 px-8 bg-[#D4AF37] hover:bg-[#B5932B] text-white text-base md:text-lg font-bold shadow-xl shadow-[#D4AF37]/20 rounded-xl transition-all hover:-translate-y-1">
+                    <span className="flex items-center justify-center gap-2">
+                      {t.home?.exploreBtn || (isAr ? 'استكشف خدماتنا' : 'Explore Services')}
+                      <ArrowRight className={`w-5 h-5 ${isAr ? 'rotate-180' : ''}`} />
+                    </span>
+                  </Button>
+                </Link>
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto h-12 md:h-14 px-8 border-2 border-gray-200 dark:border-gray-700 hover:border-[#D4AF37] text-gray-700 dark:text-gray-200 hover:text-[#D4AF37] text-base md:text-lg font-bold rounded-xl transition-all hover:bg-white dark:hover:bg-gray-800">
+                    {t.home?.contactBtn || (isAr ? 'تواصل معنا' : 'Contact Us')}
+                  </Button>
+                </Link>
+              </motion.div>
+
+            </motion.div>
+          </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-dark/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800 absolute top-full left-0 right-0 shadow-xl p-6 space-y-4 transition-all">
-            <a href="index.html" class="block text-lg font-medium text-primary" data-i18n="navHome">Home</a>
-            <a href="about.html" class="block text-lg font-medium hover:text-primary" data-i18n="navAbout">About Us</a>
-            <a href="services.html" class="block text-lg font-medium hover:text-primary" data-i18n="navServices">Services</a>
-            <a href="contact.html" class="block text-lg font-medium hover:text-primary" data-i18n="navContact">Contact</a>
-            <div class="h-px bg-gray-200 dark:bg-gray-700 my-2"></div>
-            <div class="grid grid-cols-2 gap-4">
-                <button onclick="toggleLanguage()" class="flex items-center justify-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-gray-800"><i data-lucide="globe" class="w-5 h-5 text-primary"></i> <span class="font-bold">Lang</span></button>
-                <button onclick="toggleTheme()" class="flex items-center justify-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-gray-800"><i data-lucide="moon" class="w-5 h-5 hidden dark:block text-primary"></i><i data-lucide="sun" class="w-5 h-5 block dark:hidden text-primary"></i><span class="font-bold">Theme</span></button>
-            </div>
-        </div>
-    </nav>
 
-    <section class="relative min-h-[90vh] flex items-center pt-28 pb-20">
-        <div class="max-w-7xl mx-auto px-4 w-full relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="ltr:text-left rtl:text-right order-2 lg:order-1" data-aos="fade-right">
-                    <span class="inline-block px-4 py-2 bg-primary/10 border border-primary/20 text-primary text-sm font-bold uppercase tracking-wider mb-6 rounded-lg" data-i18n="heroBadge">Business Experts</span>
-                    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-gray-900 dark:text-white font-heading">
-                        <span data-i18n="heroTitle">Start Your Business</span> <br/>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-primary to-secondary animate-gradient leading-normal" data-i18n="heroSubtitle">With Confidence</span>
-                    </h1>
-                    <p class="text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-lg leading-relaxed font-medium" data-i18n="heroDesc">
-                        Complete solutions for company formation, investment management, and feasibility studies.
+        {/* PARTNERS */}
+        <section className="py-10 border-y border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">{isAr ? 'شركاء النجاح' : 'TRUSTED BY INDUSTRY LEADERS'}</p>
+          </div>
+          <Marquee>
+            {partners.map((partner, i) => (
+              <div key={i} className="mx-8 opacity-40 hover:opacity-100 transition-opacity duration-300 cursor-default">
+                <span className="text-xl md:text-3xl font-black text-gray-800 dark:text-gray-200 hover:text-[#D4AF37] whitespace-nowrap font-heading">{partner}</span>
+              </div>
+            ))}
+          </Marquee>
+        </section>
+
+        {/* SERVICES GRID (FIXED) */}
+        <section className="py-20 md:py-32 relative bg-gray-50/50 dark:bg-black/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16 md:mb-20">
+              <motion.span 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-[#D4AF37] font-bold tracking-wider uppercase text-sm mb-2 block"
+              >
+                {isAr ? 'ماذا نقدم؟' : 'What We Offer'}
+              </motion.span>
+              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+                {t.home?.servicesTitle || (isAr ? 'خدماتنا المتكاملة' : 'Our Services')}
+              </h2>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F2D06B] mx-auto rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group relative bg-white dark:bg-gray-800 rounded-[2rem] border border-gray-100 dark:border-gray-700 hover:border-[#D4AF37] transition-all duration-500 hover:shadow-2xl hover:shadow-[#D4AF37]/10 flex flex-col h-full overflow-visible"
+                >
+                  <div className="relative h-64">
+                    <div className="w-full h-full overflow-hidden rounded-t-[2rem]">
+                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                        <img 
+                          src={service.img} 
+                          alt={service.title} 
+                          className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                        />
+                    </div>
+                    <div className={`absolute -bottom-6 ${isAr ? 'left-8' : 'right-8'} z-20`}>
+                      <div className="w-14 h-14 bg-[#D4AF37] text-white rounded-2xl flex items-center justify-center shadow-lg shadow-[#D4AF37]/30 transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300">
+                        <service.icon className="w-7 h-7" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-8 pt-10 flex-grow flex flex-col relative rounded-b-[2rem]">
+                    <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none overflow-hidden rounded-tr-[2rem]">
+                       <service.icon className="w-24 h-24 text-gray-500 transform -rotate-12" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400 mb-6 text-sm leading-relaxed line-clamp-3 flex-grow">
+                      {service.description}
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-5">
-                        <a href="services.html" class="inline-flex items-center justify-center h-14 px-10 bg-primary hover:bg-yellow-600 text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-1 group">
-                            <span data-i18n="heroBtn1">Our Services</span> <i data-lucide="arrow-right" class="mx-2 w-5 h-5 rtl:rotate-180 group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                        <a href="contact.html" class="inline-flex items-center justify-center h-14 px-10 border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 font-bold rounded-xl transition-all">
-                            <span data-i18n="heroBtn2">Contact Us</span>
-                        </a>
+                    <div className="mt-auto pt-6 border-t border-gray-100 dark:border-gray-700">
+                      <Link 
+                        to={`/services#${service.slug}`} 
+                        className="inline-flex items-center text-gray-800 dark:text-gray-200 font-bold text-sm tracking-wide group/link hover:text-[#D4AF37] transition-colors"
+                      >
+                        <span>{isAr ? 'اقرأ المزيد' : 'Read More'}</span>
+                        <span className={`bg-gray-100 dark:bg-gray-700 p-1.5 rounded-full mx-2 transition-all group-hover/link:bg-[#D4AF37] group-hover/link:text-white`}>
+                            <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isAr ? 'rotate-180 group-hover/link:-translate-x-1' : 'group-hover/link:translate-x-1'}`} />
+                        </span>
+                      </Link>
                     </div>
-                </div>
-                <div class="relative order-1 lg:order-2" data-aos="fade-left">
-                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700">
-                         <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" alt="Business">
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* STATS */}
+        <section className="py-20 md:py-24 bg-[#D4AF37] relative overflow-hidden">
+           <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+           <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center relative z-10">
+             {stats.map((stat, index) => (
+               <CountUpStats key={index} target={stat.number} label={stat.label} icon={stat.icon} />
+             ))}
+           </div>
+        </section>
+
+        {/* TESTIMONIALS */}
+        <section className="py-20 md:py-32 relative bg-gray-50 dark:bg-gray-900/50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{isAr ? 'آراء العملاء' : 'Client Testimonials'}</h2>
+               <p className="text-gray-500 dark:text-gray-400">{isAr ? 'نفخر بثقة عملائنا ونجاحاتهم' : 'We are proud of our clients trust and success'}</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((review, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                  className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 relative hover:shadow-xl transition-all hover:-translate-y-1"
+                >
+                  <div className="flex gap-1 mb-6">
+                    {[...Array(5)].map((_, starIndex) => (
+                      <Star key={starIndex} className={`w-4 h-4 ${starIndex < review.rating ? 'text-[#D4AF37] fill-[#D4AF37]' : 'text-gray-300'}`} />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 text-lg italic leading-relaxed font-medium">"{review.text}"</p>
+                  <div className="flex items-center gap-4 border-t border-gray-100 dark:border-gray-700 pt-6">
+                    <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center font-bold text-[#D4AF37] text-xl">
+                      {review.name.charAt(0)}
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-28 relative bg-gray-50/80 dark:bg-gray-800/50 z-10">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-white font-heading" data-i18n="servicesTitle">Our Services</h2>
-                <div class="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6"></div>
-                <p class="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto" data-i18n="servicesDesc">Integrated services for investors.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid"></div>
-        </div>
-    </section>
-
-    <section class="py-28 relative z-10">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-white font-heading" data-i18n="whyTitle">Why Choose Us?</h2>
-                <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto" data-i18n="whyDesc">Your trusted partner for success.</p>
-            </div>
-             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center" id="stats-grid"></div>
-            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="values-grid"></div>
-        </div>
-    </section>
-
-    <section class="py-24 relative z-10">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <div class="bg-gradient-to-br from-primary/90 to-secondary/90 backdrop-blur-lg rounded-3xl p-14 shadow-2xl text-white" data-aos="zoom-in">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading" data-i18n="readyTitle">Ready to Start?</h2>
-                <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto" data-i18n="readyDesc">Book your consultation today and let us handle the procedures.</p>
-                <a href="contact.html" class="inline-flex items-center justify-center bg-white text-primary hover:bg-gray-100 px-10 py-4 text-lg rounded-full shadow-lg transition-all font-bold group">
-                    <span data-i18n="contactToday">Book Appointment</span>
-                    <i data-lucide="arrow-right" class="mx-2 w-5 h-5 rtl:rotate-180 group-hover:translate-x-1 transition-transform"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 text-sm relative z-10 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            <div class="space-y-6">
-                 <div class="flex items-center gap-3">
-                    <div class="h-12 w-12 bg-white/10 backdrop-blur-sm p-0.5 border border-primary/30 rounded-full overflow-hidden shadow-md font-bold text-xl leading-none text-primary flex items-center justify-center font-heading">
-                        N
-                        </div>
-                    <div class="flex flex-col">
-                        <h3 class="font-bold text-xl text-gray-900 dark:text-white leading-none font-heading" data-i18n="brandName">EL-NAJDI</h3>
-                        <p class="text-[10px] text-primary font-bold uppercase tracking-wider mt-1" data-i18n="brandTag">Investment Services</p>
+                    <div>
+                      <h4 className="font-bold text-gray-900 dark:text-white text-base">{review.name}</h4>
+                      <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{review.role}</span>
                     </div>
-                </div>
-                <p class="text-gray-500 dark:text-gray-400 leading-relaxed text-base" data-i18n="footerDesc">A leading firm in company formation and investment services.</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-            <div>
-                <h4 class="font-bold mb-6 uppercase text-gray-900 dark:text-white tracking-wider text-sm font-heading" data-i18n="quickLinks">Quick Links</h4>
-                <ul class="space-y-3 text-gray-500 dark:text-gray-400 font-medium">
-                    <li><a href="index.html" class="flex items-center gap-2 hover:text-primary transition-colors"><span data-i18n="navHome">Home</span></a></li>
-                    <li><a href="about.html" class="flex items-center gap-2 hover:text-primary transition-colors"><span data-i18n="navAbout">About Us</span></a></li>
-                    <li><a href="services.html" class="flex items-center gap-2 hover:text-primary transition-colors"><span data-i18n="navServices">Services</span></a></li>
-                    <li><a href="contact.html" class="flex items-center gap-2 hover:text-primary transition-colors"><span data-i18n="navContact">Contact</span></a></li>
-                </ul>
-            </div>
-            <div class="lg:col-span-2">
-                 <h4 class="font-bold mb-6 uppercase text-gray-900 dark:text-white tracking-wider text-sm font-heading" data-i18n="contactInfo">Contact Info</h4>
-                <ul class="space-y-4 text-gray-500 dark:text-gray-400 font-medium" id="contact-cards">
-                    <li class="flex items-start gap-4">
-                        <i data-lucide="map-pin" class="w-5 h-5 text-primary shrink-0 mt-1"></i>
-                        <span data-i18n="location">Main Headquarters</span>
-                    </li>
-                    <li class="flex items-center gap-4">
-                        <i data-lucide="phone" class="w-5 h-5 text-primary shrink-0"></i>
-                        <a href="tel:+000000000000" class="hover:text-primary ltr:dir-ltr">+000 000 0000</a>
-                    </li>
-                     <li class="flex items-center gap-4">
-                        <i data-lucide="mail" class="w-5 h-5 text-primary shrink-0"></i>
-                        <a href="mailto:info@elnagdi.com" class="hover:text-primary">info@elnagdi.com</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-t border-gray-200 dark:border-gray-800 pt-8">
-            <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                <p>© <span id="year"></span> <strong class="text-gray-700 dark:text-gray-300" data-i18n="brandName">EL-NAJDI</strong>. All rights reserved.</p>
-                <div class="flex gap-6"><a href="#" class="hover:text-primary transition-colors">Privacy Policy</a><a href="#" class="hover:text-primary transition-colors">Terms of Service</a></div>
-            </div>
-        </div>
-    </footer>
+          </div>
+        </section>
 
-    <a href="https://wa.me/201128864057" target="_blank" class="fixed bottom-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20ba5a] transition-all hover:scale-110 ltr:right-8 rtl:left-8 flex items-center justify-center group">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.658-.698c1.02.637 1.992 1.018 3.289 1.019 3.181 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.769-5.767-5.769v-.002zm-5.484 5.766c.002-3.033 2.468-5.498 5.501-5.498s5.498 2.467 5.498 5.497c0 3.033-2.467 5.499-5.5 5.499-.953-.001-1.826-.249-2.592-.684l-1.396.367.373-1.362c-.443-.772-.693-1.65-.684-2.611z"/><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
+        {/* CTA */}
+        <section className="py-24 relative">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="bg-gray-900 rounded-[3rem] p-12 md:p-20 shadow-2xl relative overflow-hidden text-white"
+            >
+              <div className="absolute top-0 right-0 w-80 h-80 bg-[#D4AF37] opacity-10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
+              <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#4A90E2] opacity-10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3"></div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 relative z-10">{isAr ? 'هل أنت مستعد للبدء؟' : 'Ready to Start?'}</h2>
+              <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto relative z-10 leading-relaxed">
+                {isAr ? 'دعنا نساعدك في تحقيق أهدافك. فريقنا جاهز لتقديم الاستشارة والدعم.' : 'Let us help you achieve your goals. Our team is ready to provide consultation and support.'}
+              </p>
+              <Link to="/contact" className="relative z-10">
+                <Button size="lg" className="bg-[#D4AF37] hover:bg-[#B5932B] text-white px-12 py-8 text-xl rounded-2xl shadow-lg transition-all hover:scale-105 hover:shadow-[#D4AF37]/30">
+                  {isAr ? 'تواصل معنا الآن' : 'Contact Us Now'}
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+export default Home;
